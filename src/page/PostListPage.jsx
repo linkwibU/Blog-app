@@ -1,62 +1,56 @@
+import { useEffect, useState } from "react";
 import PostList from "../component/PostList";
-export default function PostListPage(){
-  const blogPosts = [
-  {
-    id: 1,
-    title: "Hiểu về React Hooks",
-    excerpt: "Giới thiệu ngắn gọn về useState và useEffect trong React.",
-    author: "Nguyễn Văn A",
-    createdAt: "2024-07-01",
-    tags: ["React", "Hooks", "Frontend"]
-  },
-  {
-    id: 2,
-    title: "Async/Await trong JavaScript",
-    excerpt: "Cách viết code bất đồng bộ gọn gàng hơn với async/await.",
-    author: "Trần Thị B",
-    createdAt: "2024-07-05",
-    tags: ["JavaScript", "Async", "Promise"]
-  },
-  {
-    id: 3,
-    title: "REST API là gì?",
-    excerpt: "Giải thích khái niệm REST API và cách hoạt động cơ bản.",
-    author: "Lê Văn C",
-    createdAt: "2024-07-10",
-    tags: ["API", "Backend", "REST"]
-  },
-  {
-    id: 4,
-    title: "Git cơ bản cho lập trình viên",
-    excerpt: "Các lệnh Git thường dùng để quản lý source code.",
-    author: "Phạm Thị D",
-    createdAt: "2024-07-15",
-    tags: ["Git", "Version Control", "Collaboration"]
-  },
-  {
-    id: 5,
-    title: "CSS Flexbox nhanh gọn",
-    excerpt: "Cách dùng Flexbox để bố cục giao diện web.",
-    author: "Hoàng Văn E",
-    createdAt: "2024-07-20",
-    tags: ["CSS", "Flexbox", "Frontend"]
-  },
-  {
-    id: 6,
-    title: "Node.js và Express",
-    excerpt: "Xây dựng server đơn giản với Node.js và Express.",
-    author: "Đỗ Thị F",
-    createdAt: "2024-07-25",
-    tags: ["Node.js", "Express", "Backend"]
+export default function PostListPage() {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  async function fetchCourse() {
+    try {
+      setLoading(true);
+      const res = await fetch("https://post365-api.onschoolbootcamp.edu.vn/posts/", {
+        method: "GET"
+      });
+      if (!res.ok) {
+        throw new Error("Không thể tải bài viết");
+        return <button>Retry</button>
+      }
+      const data = await res.json();
+      console.log(data);
+      setPosts(data);
+    }
+    catch (err) {
+      setError("vui lòng thử lại");
+      console.error(err.message);
+
+    }
+    finally {
+      setLoading(false);
+    }
   }
-];
+  useEffect(() => {
+    fetchCourse();
+  }, [])
 
-    return(
-      <div>
-          <h1>Bài viết mới nhất</h1>
-          <p>Khám phá các bài viết về công nghệ</p>
-          <PostList blogPosts={blogPosts}/>        
-      </div>
 
-    )
+  return (
+    <div>
+      <h1>Bài viết mới nhất</h1>
+      <p>Khám phá các bài viết về công nghệ</p>
+      {loading && <p>Loading...</p>}
+      {error && (
+        <>
+          <p>{error}</p>
+          <button>retry</button>
+        </>
+      )
+      }
+      {loading && !error && posts.length === 0 && (
+        <p>Chưa có bài viết nào</p>
+      )}
+      {!loading && !error && posts.length > 0 && (
+        <PostList posts={posts} fetchCourse={fetchCourse} />
+      )}
+    </div>
+
+  )
 }
