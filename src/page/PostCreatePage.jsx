@@ -1,5 +1,8 @@
 export default function PostCreatePage(){
     return(
-        <h1>Tạo bài viết mới</h1>
+        <div>
+            <h1>Tạo bài viết mới</h1>
+        </div>
+        
     )
 }
