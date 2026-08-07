@@ -12,7 +12,6 @@ export default function PostListPage() {
       });
       if (!res.ok) {
         throw new Error("Không thể tải bài viết");
-        return <button>Retry</button>
       }
       const data = await res.json();
       console.log(data);
