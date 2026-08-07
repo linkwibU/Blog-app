@@ -1,33 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PostList from "../component/PostList";
+import {  BlogContext } from "../context/BlogContext";
 export default function PostListPage() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  async function fetchCourse() {
-    try {
-      setLoading(true);
-      const res = await fetch("https://post365-api.onschoolbootcamp.edu.vn/posts/", {
-        method: "GET"
-      });
-      if (!res.ok) {
-        throw new Error("Không thể tải bài viết");
-      }
-      const data = await res.json();
-      console.log(data);
-      setPosts(data);
-    }
-    catch (err) {
-      setError("vui lòng thử lại");
-      console.error(err.message);
-
-    }
-    finally {
-      setLoading(false);
-    }
-  }
+  // const [posts, setPosts] = useState([]);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  const {posts, isLoadingList, listError, dispatch, loadPosts} = useContext(BlogContext);
   useEffect(() => {
-    fetchCourse();
+    loadPosts();
   }, [])
 
 
@@ -35,19 +15,19 @@ export default function PostListPage() {
     <div>
       <h1>Bài viết mới nhất</h1>
       <p>Khám phá các bài viết về công nghệ</p>
-      {loading && <p>Loading...</p>}
-      {error && (
+      {isLoadingList && <p>Loading...</p>}
+      {listError && (
         <>
-          <p>{error}</p>
+          <p>{listError}</p>
           <button>retry</button>
         </>
       )
       }
-      {loading && !error && posts.length === 0 && (
+      {!isLoadingList && !listError && posts.length === 0 && (
         <p>Chưa có bài viết nào</p>
       )}
-      {!loading && !error && posts.length > 0 && (
-        <PostList posts={posts} fetchCourse={fetchCourse} />
+      {!isLoadingList && !listError && posts.length > 0 && (
+        <PostList />
       )}
     </div>
 

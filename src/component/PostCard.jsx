@@ -1,5 +1,8 @@
+import { useContext } from "react"
 import { Link } from "react-router-dom"
-export default function PostCard({ posts }) {
+import { BlogContext} from "../context/BlogContext"
+export default function PostCard() {
+    const {posts} = useContext(BlogContext);
     return (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1em' }}>
             {

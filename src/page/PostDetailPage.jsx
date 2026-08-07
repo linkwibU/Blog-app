@@ -39,10 +39,15 @@ export default function PostDetailPage() {
             setLoading(false);
         }
     }
+    //useEffect để hiện ra màn hình trước khi có điều kiện
+    useEffect(() => {
+        fetchPostId();
+    }, [])
+
     if (loading) {
         return <p>Loading...</p>;
     }
-    if (error || !post) {
+    if (error || !posts) {
         return (
             < div >
                 <p>{error}</p>
@@ -51,9 +56,6 @@ export default function PostDetailPage() {
         )
 
     }
-    useEffect(() => {
-        fetchPostId();
-    }, [])
 
 
     return (
