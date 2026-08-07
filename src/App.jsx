@@ -13,7 +13,7 @@ export default function App() {
         <BrowserRouter>
             <BlogProvider>
                 <Routes>
-                    <Route element={<BlogLayout />}>
+                    <Route element={<BlogLayout  className="bg-body-secondary"/>}>
                         <Route index element={<HomePage />} />
                         <Route path="about" element={<AboutPage />} />
                         <Route path="posts" element={<PostListPage />} />

@@ -7,11 +7,11 @@ export default function PostCard() {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1em' }}>
             {
                 posts.map(course => (
-                    <div style={{ display: 'flex', flexDirection: 'column', border: "2px solid purple", padding: '1em' }}
+                    <div className="border border-dark card" style={{ display: 'flex', flexDirection: 'column', border: "2px solid", padding: '1em' }}
                         key={course.id}>
                         <div style={{display:'flex', gap:'20px', color:'#A8A492'}}>
-                            <p>{course.author}</p>
-                            <p>{course.createdAt}</p>
+                            <p>🧑{course.author}</p>
+                            <p>📝{course.createdAt}</p>
                         </div>
                         <p style={{ fontWeight: '700' }}>{course.title}</p>
                         <p>{course.excerpt}</p>
@@ -24,7 +24,7 @@ export default function PostCard() {
                                 )
                             })} */}
                         </div>
-                        <Link to={`/posts/${course.id}`} style={{margin:'5px', textDecoration:'none',color:'black'}}>Read more →</Link>
+                        <Link to={`/posts/${course.id}`} style={{marginTop:'5px', textDecoration:'none',color:'black'}}>Read more →</Link>
                     </div>
                 ))
             }
