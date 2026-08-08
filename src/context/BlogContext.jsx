@@ -47,6 +47,12 @@ export function blogReducer(state, action) {
                 ))
             }
         }
+        case "DELETE_POST":{
+            return{
+                ...state,
+                posts: state.posts.filter((p) => p.id !== action.payload)
+            }
+        }
         default:
             return state;
     };
@@ -137,8 +143,27 @@ export function BlogProvider({ children }) {
             throw err;
         }
     }
+        async function loadDelete(postId) {
+        try {
+            console.log("postId:", postId, typeof postId);
+            // setLoading(true);
+            const res = await fetch(`https://post365-api.onschoolbootcamp.edu.vn/posts/${postId}`, {
+                method: "DELETE"
+            });
+            if (!res.ok) {
+                throw new Error("Không thể tải bài viết");
+            }
+            const data = await res.json(postId);
+            dispatch({type:"DELETE", payload: postId})
+            console.log(data);
+       }
+        catch (err) {
+            // setError("vui lòng thử lại");
+            console.error(err.message);
+        }
+    }
     return (
-        <BlogContext.Provider value={{ ...state, dispatch, loadPostId, loadCreate, loadEditPostId, loadPosts }}>{children}</BlogContext.Provider>
+        <BlogContext.Provider value={{ ...state, dispatch, loadPostId, loadCreate, loadEditPostId, loadPosts, loadDelete }}>{children}</BlogContext.Provider>
     );
 
 }

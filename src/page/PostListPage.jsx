@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import PostList from "../component/PostList";
 import {  BlogContext } from "../context/BlogContext";
+import Heading from "../component/atoms/Heading";
 export default function PostListPage() {
-  // const [posts, setPosts] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null);
   const { loadPosts, isLoadingList, listError , posts} = useContext(BlogContext);
   useEffect(() => {
     loadPosts();
@@ -13,7 +11,7 @@ export default function PostListPage() {
 
   return (
     <div>
-      <h1>Bài viết mới nhất</h1>
+      <Heading label="Bài viết mới nhất"/>
       <p>Khám phá các bài viết về công nghệ</p>
       {isLoadingList && <p>Loading...</p>}
       {listError && (

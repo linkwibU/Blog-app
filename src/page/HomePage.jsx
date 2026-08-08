@@ -1,16 +1,18 @@
 import {  Navigate, useNavigate } from "react-router-dom";
+import Button from "../component/atoms/Button";
+import Heading from "../component/atoms/Heading";
 export default function HomePage() {
     const navigate = useNavigate();
     return (
         <div style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'2em'}}>
             <p className="text-primary">Chào mừng đến với BlogApp</p>
-            <h1>Chia sẻ kiến thức về lập trình</h1>
+            <Heading label="Chia sẻ kiến thức về lập trình và công nghệ"/>
             <h4 className="text-secondary">Nơi tổng hợp các bài viết về React, typeScript, frontend development luôn cập nhập xu hướng mới</h4>
             <div style={{gap:'20px', display:'flex'}}>
-                <button className="btn btn-primary" onClick={() => navigate('/posts')}>Xem danh sách bài viết →</button>
-                <button className="btn btn-light" onClick={() => navigate('/about')}>Về chúng tôi </button>
+                <Button className="btn btn-primary" onClick={() => navigate('/posts')} label="Xem danh sách bài viết →"/>
+                <Button className="btn btn-light" onClick={() => navigate('/about')} label="Về chúng tôi"/>
             </div>            
-            <div style={{display:'flex', flexDirection:'row', gap:"20px"}}>
+            <div  className="homepage">
 
                 <div className="card p-5">
                     <h5 className="card-title">Hiệu suất cao</h5>
