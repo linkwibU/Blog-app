@@ -1,4 +1,4 @@
-import PostCard from "./PostCard";
-export default function PostList({posts}){
-    return <PostCard posts={posts}/>
+import PostCard from "./organisms/PostCard";
+export default function PostList(){
+    return <PostCard />
 }
