@@ -12,7 +12,7 @@ export default function HomePage() {
                 <Button className="btn btn-primary" onClick={() => navigate('/posts')} label="Xem danh sách bài viết →"/>
                 <Button className="btn btn-light" onClick={() => navigate('/about')} label="Về chúng tôi"/>
             </div>            
-            <div style={{display:'flex', flexDirection:'row', gap:"20px"}}>
+            <div  className="homepage">
 
                 <div className="card p-5">
                     <h5 className="card-title">Hiệu suất cao</h5>

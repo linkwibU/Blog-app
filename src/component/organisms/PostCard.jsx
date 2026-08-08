@@ -43,10 +43,10 @@ export default function PostCard() {
         }
     }
     return (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1em' }}>
+        <div className="pCard">
             {
                 posts.map(course => (
-                    <div className="border border-dark card" style={{ display: 'flex', flexDirection: 'column', border: "2px solid", padding: '1em' }}
+                    <div className="border border-dark card" style={{ display: 'flex', flexDirection: 'column', border: "2px solid", padding: '1em', width:'20em' }}
                         key={course.id}>
                         <PostMeta style={{ display: 'flex', gap: '20px', color: '#A8A492' }} author={course.author} createdAt={formatDate(course.createdAt)} />
 
