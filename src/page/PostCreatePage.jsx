@@ -16,9 +16,7 @@ export default function PostCreatePage() {
             console.error("Tạo mới thất bại", err);
         }
     }
-    // useEffect(() => {
-    //     loadCreate();
-    // }, [])
+
 
     return (
         <div>

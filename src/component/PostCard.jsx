@@ -1,20 +1,33 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import { BlogContext} from "../context/BlogContext"
+import { BlogContext } from "../context/BlogContext"
+
 export default function PostCard() {
-    const {posts} = useContext(BlogContext);
+    const { posts, loadDelete } = useContext(BlogContext);
+
+    async function handleDelete(postId) {
+
+        const confirmDelete = window.confirm(`Xóa bài viết "${postId}"?`);
+        if (!confirmDelete) return;
+        try {
+            const data = await loadDelete(postId);
+        }
+        catch (err) {
+            console.error(err.message);
+        }
+    }
     return (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1em' }}>
             {
                 posts.map(course => (
                     <div className="border border-dark card" style={{ display: 'flex', flexDirection: 'column', border: "2px solid", padding: '1em' }}
                         key={course.id}>
-                        <div style={{display:'flex', gap:'20px', color:'#A8A492'}}>
+                        <div style={{ display: 'flex', gap: '20px', color: '#A8A492' }}>
                             <p>🧑{course.author}</p>
                             <p>📝{course.createdAt}</p>
                         </div>
                         <p style={{ fontWeight: '700' }}>{course.title}</p>
-                        <p>{course.excerpt}</p>
+                        <p>{course.summary}</p>
 
                         <div>
                             {course.tags}
@@ -24,7 +37,8 @@ export default function PostCard() {
                                 )
                             })} */}
                         </div>
-                        <Link to={`/posts/${course.id}`} style={{marginTop:'5px', textDecoration:'none',color:'black'}}>Read more →</Link>
+                        <Link to={`/posts/${course.id}`} style={{ marginTop: '5px', textDecoration: 'none', color: 'black' }}>Read more →</Link>
+                        <button className="btn btn-primary" onClick={() => handleDelete(course.id)}>Xoá</button>
                     </div>
                 ))
             }
