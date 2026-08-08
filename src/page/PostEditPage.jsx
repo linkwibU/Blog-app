@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import PostForm from "../component/PostForm";
 import { BlogContext } from "../context/BlogContext";
 import { useNavigate, useParams } from "react-router-dom";
-
+import Heading from "../component/atoms/Heading";
 export default function PostEditPage() {
     const navigate = useNavigate();
     const { postId } = useParams();
@@ -38,7 +38,7 @@ export default function PostEditPage() {
 
     return (
         <div>
-            <h1>Chỉnh sửa bài viết</h1>
+            <Heading label="Chỉnh sửa bài viết"/>
             <p>Cập nhập nội dung bài viết</p>
             {loading ? (
                 <p>Đang tải bài viết...</p>

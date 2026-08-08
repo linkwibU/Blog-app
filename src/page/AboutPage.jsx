@@ -1,7 +1,8 @@
+import Heading from "../component/atoms/Heading"
 export default function AboutPage(){
     return(
         <div style={{display:'flex', flexDirection:'column', gap:'1em'}}>
-            <h1>Về Chúng tôi</h1>
+            <Heading label="Về Chúng tôi"/>
             <h5 className="text-secondary">Blog App là dự án mẫu để thực hành các kỹ năng React  nâng cao</h5>
             <p>Dự án này gồm các chức năng</p>
             <ul>
