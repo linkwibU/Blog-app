@@ -1,18 +1,62 @@
-# React + Vite
+# Blog App
+Dự án đăng blog app tiện dùng.
+## Screenshot
+![home](./asset/home.PNG)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+![about](./asset/about.PNG)
 
-Currently, two official plugins are available:
+![card](./asset/card.PNG)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![edit](./asset/edit.PNG)
 
-## React Compiler
+![formcreate](./asset/formcreate.PNG)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+![login](./asset/login.PNG)
 
-Note: This will impact Vite dev & build performances.
+![notfound](./asset/notfound.PNG)
 
-## Expanding the Oxlint configuration
+## Feature
+- AboutPage.jsx
+- HomePage.jsx
+- NotFoundPage.jsx
+- PostCreatePage.jsx
+- PostEditPage.jsx
+- PostDetailPage.jsx
+- PostListPage.jsx
+## 🛠 Tech Stack
+- Node.js, React
+- Bootstrap, CSS
+- Javascript HTML
+## Run App
+- npm install
+- npm run dev
+## Link API
+(https://post365-api.onschoolbootcamp.edu.vn/posts/)
+## Link demo
+(https://6a771a75da82b4b954adbe7e--glistening-cuchufli-6ee5e0.netlify.app/)
+## Case Study
+ ### Điểm kỹ thuật chính:
+  ಥ_ಥ Bài toán: 
+  - Ban đầu các component ở dạng hardcode không được linh hoạt.
+  - Lặp lại code khá nhiều, truyền prop thông qua nhiều component gây mất thời gian.
+  - Cách trình bày component khá rối.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+  Giải pháp tổng thể: 
+  - Dùng context, outlet để truyền phần tử cũng như action để dễ tái sử dụng. 
+  - Xây dựng atomic design để dễ quản lý code.
+
+  Kỹ thuật chính:
+  - Context để tạo các action,  tái sử dụng được, ngắn gọn.
+  - useParam để lấy id từ fetch render thông tin.
+  - Navigate, link để tiện lợi chuyển trang.
+  - Router phân luồng, dễ quản lý.
+  - Atomic design mở rộng, quản lý component.
+
+  Kiến trúc Router + Context:
+  - Router  phân luồng component kết hợp Context để xây dựng cách hoạt động cho các componet.
+
+  Lessons learned:
+  - Học được quy trình tạo trang web tối ưu hơn qua các kỹ thuật trên.
+  
+
+ 
