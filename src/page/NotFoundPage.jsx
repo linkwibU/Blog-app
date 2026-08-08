@@ -1,3 +1,4 @@
+import Heading from "../component/atoms/Heading"
 export default function NotFoundPage(){
-    return <h1>Page not found 400</h1>
+    return  <Heading label="Page not found 400"/>
 }
