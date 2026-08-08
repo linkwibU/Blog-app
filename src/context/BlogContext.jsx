@@ -29,6 +29,30 @@ export function blogReducer(state, action) {
                 isLoadingList: false,
                 listError: action.payload
             };
+        case "SET_POST":
+            return {
+                ...state,
+                posts: action.payload
+            };
+        case "CREATE_POST":
+            return {
+                ...state,
+                posts: [...state.posts, action.payload]
+            };
+        case "EDIT_POST": {
+            return {
+                ...state,
+                posts: state.posts.map((p) => (
+                    p.id === action.payload.id ? action.payload : p
+                ))
+            }
+        }
+        case "DELETE_POST":{
+            return{
+                ...state,
+                posts: state.posts.filter((p) => p.id !== action.payload)
+            }
+        }
         default:
             return state;
     };
@@ -62,8 +86,84 @@ export function BlogProvider({ children }) {
 
         // }
     }
+    async function loadCreate(formData) {
+        try {
+            const res = await fetch("https://post365-api.onschoolbootcamp.edu.vn/posts", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => null); // 👈 đọc body lỗi
+                console.error("Chi tiết lỗi:", errorData);
+                throw new Error(errorData?.message || "Không thể tải bài viết");
+            }
+            const data = await res.json();
+            console.log(data);
+            dispatch({ type: "CREATE_POST", payload: data });
+            return data;
+        }
+        catch (err) {
+            console.error(err.message);
+            throw err;
+        }
+    }
+    async function loadEditPostId(formData, postId) {
+        try {
+            const res = await fetch(`https://post365-api.onschoolbootcamp.edu.vn/posts/${postId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            if (!res.ok) {
+                throw new Error("Không thể tải bài viết");
+            }
+            const data = await res.json();
+            console.log(data);
+            dispatch({ type: "EDIT_POST", payload: data })
+        }
+        catch (err) {
+            console.error(err.message);
+            
+        }
+    }
+    async function loadPostId(postId) {
+        try {
+            const res = await fetch(`https://post365-api.onschoolbootcamp.edu.vn/posts/${postId}`, {
+                method: 'GET',
+            });
+            if (!res.ok) {
+                throw new Error("Không thể tải bài viết");
+            }
+            const data = await res.json();
+            console.log(data);
+            return data;
+        } catch (err) {
+            console.error(err.message);
+            throw err;
+        }
+    }
+        async function loadDelete(postId) {
+        try {
+            console.log("postId:", postId, typeof postId);
+            // setLoading(true);
+            const res = await fetch(`https://post365-api.onschoolbootcamp.edu.vn/posts/${postId}`, {
+                method: "DELETE"
+            });
+            if (!res.ok) {
+                throw new Error("Không thể tải bài viết");
+            }
+            const data = await res.json(postId);
+            dispatch({type:"DELETE", payload: postId})
+            console.log(data);
+       }
+        catch (err) {
+            // setError("vui lòng thử lại");
+            console.error(err.message);
+        }
+    }
     return (
-        <BlogContext.Provider value={{ ...state, dispatch, loadPosts }}>{children}</BlogContext.Provider>
+        <BlogContext.Provider value={{ ...state, dispatch, loadPostId, loadCreate, loadEditPostId, loadPosts, loadDelete }}>{children}</BlogContext.Provider>
     );
 
 }

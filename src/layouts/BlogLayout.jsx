@@ -1,20 +1,23 @@
-import Header from "../component/Header";
-import Footer from "../component/Footer";
+import Header from "../component/organisms/Header";
+import Footer from "../component/organisms/Footer";
 import Main from "../component/Main";
-import { Outlet, Link } from "react-router-dom";
+import Button from "../component/atoms/Button";
+import { Outlet, Link, Navigate, useNavigate } from "react-router-dom";
+
 
 export default function BlogLayout() {
+    const navigate = useNavigate();
     return (
         <>
-            <nav style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <nav style={{ display: 'flex', justifyContent: 'space-between', padding:'1em' }}>
                 <div style={{ display: 'flex', gap: '10px' }}>
-                    <Link to="/">Trang chủ</Link> {"   "}
-                    <Link to="/posts">Bài viết</Link> {"   "}
-                    <Link to="/about">Giới thiệu</Link> {"   "}
-                    <Link to="/admin/posts/new">Quản trị</Link>
+                    <h5>Blog App</h5>
+                    <Link to="/" style={{textDecoration:'none'}}>Trang chủ</Link> {"   "}
+                    <Link to="/posts" style={{textDecoration:'none'}}>Bài viết</Link> {"   "}
+                    <Link to="/about" style={{textDecoration:'none'}}>Giới thiệu</Link> {"   "}
+                    <Link to="/admin/posts/new" style={{textDecoration:'none'}}>Quản trị</Link>
                 </div>
-
-                <button>Đăng nhập</button>
+                <Button label="Đăng nhập" type="button" className="btn btn-primary " onClick={() => navigate('/login')}/>
             </nav>
 
             <Header />
