@@ -1,14 +1,31 @@
+import { createContext, useContext, useEffect, useState } from "react"
 import PostForm from "../component/PostForm"
-export default function PostCreatePage(){
-   async function onSubmit(){
-    
-   } 
-    return(
+import { BlogContext } from "../context/BlogContext";
+import { Navigate, useNavigate } from "react-router-dom";
+export default function PostCreatePage() {
+    const navigate = useNavigate();
+    const { loadCreate } = useContext(BlogContext);
+    async function handleCreate(formData) {
+        try {
+            const NewPost = await loadCreate(formData);
+            console.log("newp: ", NewPost);
+            // navigate(`admin/posts/new`);
+            console.log("thành công post");
+        }
+        catch(err){
+            console.error("Tạo mới thất bại", err);
+        }
+    }
+    // useEffect(() => {
+    //     loadCreate();
+    // }, [])
+
+    return (
         <div>
             <h1>Tạo bài viết mới</h1>
             <p>Nhập thông tin bài viết vào form bên dưới</p>
-            <PostForm />
+            <PostForm initialValues={{}} onSubmit={handleCreate} submitLabel="Tạo mới" />
         </div>
-        
+
     )
 }

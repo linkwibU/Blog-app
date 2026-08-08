@@ -5,7 +5,7 @@ export default function PostListPage() {
   // const [posts, setPosts] = useState([]);
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState(null);
-  const {posts, isLoadingList, listError, dispatch, loadPosts} = useContext(BlogContext);
+  const { loadPosts, isLoadingList, listError , posts} = useContext(BlogContext);
   useEffect(() => {
     loadPosts();
   }, [])
