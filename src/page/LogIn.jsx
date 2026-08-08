@@ -1,4 +1,5 @@
 import Button from "../component/atoms/Button"
+import Input from "../component/atoms/Input"
 export default function LogIn() {
     return (
         <div style={{
@@ -9,9 +10,9 @@ export default function LogIn() {
             <p>Sử dụng email bất kì để đăng nhập</p>
             <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                 <label htmlFor="email">Email</label>
-                <input style={{ width: '20em' }} type="email" />
+                <Input  style={{ width: '20em' }} type="email" />
                 <label htmlFor="password">Mật khẩu</label>
-                <input style={{ width: '20em' }} type="password" />
+                <Input  style={{ width: '20em' }} type="password" />
                 
             </form>
             <Button className="btn btn-primary" style={{ width: '20em', marginTop:'1em' }} label="Đăng nhập"/>
