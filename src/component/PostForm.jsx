@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-
+import Button from "./atoms/Button";
+import Input from "./atoms/Input";
+import Textarea from "./atoms/Textarea";
+import FormField from "./molecules/FormField";
 export default function PostForm({ initialValues, onSubmit, submitLabel }) {
     const [form, setForm] = useState({
         id: initialValues?.id ?? "",
@@ -53,7 +56,7 @@ export default function PostForm({ initialValues, onSubmit, submitLabel }) {
             isValid = false;
         }
         if (!form.summary.trim()) {
-            setErrorExcerpt('Vui lòng nhập nội dung khoá học');
+            setErrorExcerpt('Vui lòng nhập tóm tắt khoá học');
             isValid = false;
         }
         return isValid;
@@ -61,28 +64,28 @@ export default function PostForm({ initialValues, onSubmit, submitLabel }) {
     return (
         <form style={{ display: 'flex', alignItems: "center", flexDirection: 'column' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', width: '30em', gap: '1em' }}>
-                <label htmlFor="title">Tiêu đề</label>
-                {errorTitle && <p className="text-danger">{errorTitle}</p>}
-                <input
-                    style={{ gridColumn: 'span 2' }}
+                <FormField 
                     type="text"
                     value={form.title}
                     onChange={handleChange}
-                    name="title"
+                    name="title" 
+                    label="Tiêu đề" 
+                    error={errorTitle}
+                    style={{ gridColumn: 'span 2' }}               
                 />
-                <label htmlFor="slug">Slug</label>
-                <input
+
+                <FormField
                     style={{ gridColumn: 'span 2' }}
-                    type="url"
+                    type="text"
                     value={form.slug}
                     onChange={handleChange}
                     name="slug"
+                    label="Slug"                
                 />
-
 
                 <label htmlFor="author">Tác giả</label>
                 <label htmlFor="status">Trạng thái</label>
-                <input
+                <Input
                     type="text"
                     value={form.author}
                     onChange={handleChange}
@@ -97,33 +100,35 @@ export default function PostForm({ initialValues, onSubmit, submitLabel }) {
 
                 <label htmlFor="summary">Tóm tắt</label>
                 {errorExcerpt && <p className="text-danger">{errorExcerpt}</p>}
-                <textarea
+                <Textarea
                     style={{ gridColumn: 'span 2' }}
                     type="text"
                     value={form.summary}
                     onChange={handleChange}
                     name="summary"
-                ></textarea>
+                ></Textarea>
                 <label htmlFor="content">Nội dung</label>
                 {errorContent && <p className="text-danger">{errorContent}</p>}
-                <textarea
+                <Textarea
                     style={{ gridColumn: 'span 2' }}
                     type="text"
                     value={form.content}
                     onChange={handleChange}
                     name="content"
-                ></textarea>
-
-                <label style={{ gridColumn: 'span 2' }} htmlFor="tags">Tags</label>
-                <input
-                    style={{ gridColumn: 'span 2' }}
-                    type="text"
-                    value={form.tags}
-                    onChange={handleChange}
-                    name="tags"
+                ></Textarea>
+                
+                
+                <FormField 
+                label="Tags"
+                style={{ gridColumn: 'span 2' }}
+                type="text"
+                value={form.tags}
+                onChange={handleChange}
+                name="tags"                
                 />
+
             </div>
-            <button type="submit" onClick={handleSubmit} style={{ width: '10em', height: '4em', marginTop: '1em' }}>{submitLabel}</button>
+            <Button label={submitLabel} type="submit" onClick={handleSubmit} style={{ width: '10em', height: '3em', marginTop: '1em' }} className="btn btn-primary" />
         </form>
     )
 }

@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react"
 import PostForm from "../component/PostForm"
 import { BlogContext } from "../context/BlogContext";
 import { Navigate, useNavigate } from "react-router-dom";
+import Heading from "../component/atoms/Heading";
 export default function PostCreatePage() {
     const navigate = useNavigate();
     const { loadCreate } = useContext(BlogContext);
@@ -20,7 +21,7 @@ export default function PostCreatePage() {
 
     return (
         <div>
-            <h1>Tạo bài viết mới</h1>
+            <Heading label="Tạo bài viết mới"/>
             <p>Nhập thông tin bài viết vào form bên dưới</p>
             <PostForm initialValues={{}} onSubmit={handleCreate} submitLabel="Tạo mới" />
         </div>

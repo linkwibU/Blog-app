@@ -1,10 +1,12 @@
-import Header from "../component/Header";
-import Footer from "../component/Footer";
+import Header from "../component/organisms/Header";
+import Footer from "../component/organisms/Footer";
 import Main from "../component/Main";
-import { Outlet, Link } from "react-router-dom";
+import Button from "../component/atoms/Button";
+import { Outlet, Link, Navigate, useNavigate } from "react-router-dom";
 
 
 export default function BlogLayout() {
+    const navigate = useNavigate();
     return (
         <>
             <nav style={{ display: 'flex', justifyContent: 'space-between', padding:'1em' }}>
@@ -15,8 +17,7 @@ export default function BlogLayout() {
                     <Link to="/about" style={{textDecoration:'none'}}>Giới thiệu</Link> {"   "}
                     <Link to="/admin/posts/new" style={{textDecoration:'none'}}>Quản trị</Link>
                 </div>
-
-                <button type="button" className="btn btn-primary">Đăng nhập</button>
+                <Button label="Đăng nhập" type="button" className="btn btn-primary " onClick={() => navigate('/login')}/>
             </nav>
 
             <Header />
