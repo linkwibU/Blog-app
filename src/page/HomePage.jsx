@@ -4,7 +4,7 @@ export default function HomePage() {
     return (
         <div style={{display:'flex', flexDirection:'column', alignItems:'center', gap:'2em'}}>
             <p className="text-primary">Chào mừng đến với BlogApp</p>
-            <h1>Chia sẻ kiến thức về lập trình</h1>
+            <h1>Chia sẻ kiến thức về lập trình và công nghệ</h1>
             <h4 className="text-secondary">Nơi tổng hợp các bài viết về React, typeScript, frontend development luôn cập nhập xu hướng mới</h4>
             <div style={{gap:'20px', display:'flex'}}>
                 <button className="btn btn-primary" onClick={() => navigate('/posts')}>Xem danh sách bài viết →</button>

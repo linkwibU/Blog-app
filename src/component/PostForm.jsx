@@ -123,7 +123,7 @@ export default function PostForm({ initialValues, onSubmit, submitLabel }) {
                     name="tags"
                 />
             </div>
-            <button type="submit" onClick={handleSubmit} style={{ width: '10em', height: '4em', marginTop: '1em' }}>{submitLabel}</button>
+            <button type="submit" onClick={handleSubmit} style={{ width: '10em', height: '3em', marginTop: '1em' }} className="btn btn-primary">{submitLabel}</button>
         </form>
     )
 }
