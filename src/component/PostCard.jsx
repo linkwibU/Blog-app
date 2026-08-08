@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import { BlogContext } from "../context/BlogContext"
 import Button from "./atoms/Button";
+import PostMeta from "./molecules/PostMeta";
 export default function PostCard() {
     const { posts, loadDelete } = useContext(BlogContext);
     const [showConfirm, setShowConfirm] = useState(false);
@@ -47,10 +48,8 @@ export default function PostCard() {
                 posts.map(course => (
                     <div className="border border-dark card" style={{ display: 'flex', flexDirection: 'column', border: "2px solid", padding: '1em' }}
                         key={course.id}>
-                        <div style={{ display: 'flex', gap: '20px', color: '#A8A492' }}>
-                            <p>🧑{course.author}</p>
-                            <p>📝{formatDate(course.createdAt)}</p>
-                        </div>
+                        <PostMeta style={{ display: 'flex', gap: '20px', color: '#A8A492' }} author={course.author} createdAt={formatDate(course.createdAt)} />
+
                         <p style={{ fontWeight: '700' }}>{course.title}</p>
                         <p>{course.summary}</p>
 
