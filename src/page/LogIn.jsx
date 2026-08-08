@@ -1,4 +1,4 @@
-
+import Button from "../component/atoms/Button"
 export default function LogIn() {
     return (
         <div style={{
@@ -14,7 +14,7 @@ export default function LogIn() {
                 <input style={{ width: '20em' }} type="password" />
                 
             </form>
-            <button className="btn btn-primary" style={{ width: '20em', marginTop:'1em' }}>Đăng nhập</button>
+            <Button className="btn btn-primary" style={{ width: '20em', marginTop:'1em' }} label="Đăng nhập"/>
         </div>
 
     )

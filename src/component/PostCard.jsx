@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import { BlogContext } from "../context/BlogContext"
+import Button from "./atoms/Button";
 export default function PostCard() {
     const { posts, loadDelete } = useContext(BlogContext);
     const [showConfirm, setShowConfirm] = useState(false);
@@ -63,8 +64,7 @@ export default function PostCard() {
                         </div>
                         <hr />
                         <Link to={`/posts/${course.id}`} style={{ marginTop: '5px', textDecoration: 'none', color: 'black', marginBottom: '30px' }}>Đọc thêm →</Link>
-                        <button className="btn btn-primary" onClick={() => openConfirmDelete(course.id, course.title)}>Xoá</button>
-
+                        <Button className="btn btn-primary" onClick={() => openConfirmDelete(course.id, course.title)} label='Xoá' />
                     </div>
                 ))
             }

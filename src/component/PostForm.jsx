@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import Button from "./atoms/Button";
 export default function PostForm({ initialValues, onSubmit, submitLabel }) {
     const [form, setForm] = useState({
         id: initialValues?.id ?? "",
@@ -73,7 +73,7 @@ export default function PostForm({ initialValues, onSubmit, submitLabel }) {
                 <label htmlFor="slug">Slug</label>
                 <input
                     style={{ gridColumn: 'span 2' }}
-                    type="url"
+                    type="text"
                     value={form.slug}
                     onChange={handleChange}
                     name="slug"
@@ -123,7 +123,7 @@ export default function PostForm({ initialValues, onSubmit, submitLabel }) {
                     name="tags"
                 />
             </div>
-            <button type="submit" onClick={handleSubmit} style={{ width: '10em', height: '3em', marginTop: '1em' }} className="btn btn-primary">{submitLabel}</button>
+            <Button label={submitLabel} type="submit" onClick={handleSubmit} style={{ width: '10em', height: '3em', marginTop: '1em' }} className="btn btn-primary"/>
         </form>
     )
 }

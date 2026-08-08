@@ -1,4 +1,5 @@
 import {  Navigate, useNavigate } from "react-router-dom";
+import Button from "../component/atoms/Button";
 export default function HomePage() {
     const navigate = useNavigate();
     return (
@@ -7,8 +8,8 @@ export default function HomePage() {
             <h1>Chia sẻ kiến thức về lập trình và công nghệ</h1>
             <h4 className="text-secondary">Nơi tổng hợp các bài viết về React, typeScript, frontend development luôn cập nhập xu hướng mới</h4>
             <div style={{gap:'20px', display:'flex'}}>
-                <button className="btn btn-primary" onClick={() => navigate('/posts')}>Xem danh sách bài viết →</button>
-                <button className="btn btn-light" onClick={() => navigate('/about')}>Về chúng tôi </button>
+                <Button className="btn btn-primary" onClick={() => navigate('/posts')} label="Xem danh sách bài viết →"/>
+                <Button className="btn btn-light" onClick={() => navigate('/about')} label="Về chúng tôi"/>
             </div>            
             <div style={{display:'flex', flexDirection:'row', gap:"20px"}}>
 

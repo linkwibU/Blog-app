@@ -1,5 +1,6 @@
 import { Link, useParams, Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState, } from "react";
+import Button from "../component/atoms/Button";
 export default function PostDetailPage() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -71,7 +72,7 @@ export default function PostDetailPage() {
             </div>
             <p>{posts.content}</p>
             <hr />
-           <button onClick={() => navigate(-1)} className="btn btn-light"> ← Xem các bài viết khác</button>
+            <Button onClick={() => navigate(-1)} className="btn btn-light" label="← Xem các bài viết khác"/>
             
         </div>
 

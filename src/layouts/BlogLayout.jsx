@@ -1,6 +1,7 @@
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Main from "../component/Main";
+import Button from "../component/atoms/Button";
 import { Outlet, Link, Navigate, useNavigate } from "react-router-dom";
 
 
@@ -16,8 +17,7 @@ export default function BlogLayout() {
                     <Link to="/about" style={{textDecoration:'none'}}>Giới thiệu</Link> {"   "}
                     <Link to="/admin/posts/new" style={{textDecoration:'none'}}>Quản trị</Link>
                 </div>
-
-                <button type="button" className="btn btn-primary " onClick={() => navigate('/login')}>Đăng nhập</button>
+                <Button label="Đăng nhập" type="button" className="btn btn-primary " onClick={() => navigate('/login')}/>
             </nav>
 
             <Header />
