@@ -1,5 +1,5 @@
-import Header from "../component/Header";
-import Footer from "../component/Footer";
+import Header from "../component/organisms/Header";
+import Footer from "../component/organisms/Footer";
 import Main from "../component/Main";
 import Button from "../component/atoms/Button";
 import { Outlet, Link, Navigate, useNavigate } from "react-router-dom";

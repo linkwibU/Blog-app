@@ -1,8 +1,8 @@
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
-import { BlogContext } from "../context/BlogContext"
-import Button from "./atoms/Button";
-import PostMeta from "./molecules/PostMeta";
+import { BlogContext } from "../../context/BlogContext"
+import Button from "../atoms/Button";
+import PostMeta from "../molecules/PostMeta";
 export default function PostCard() {
     const { posts, loadDelete } = useContext(BlogContext);
     const [showConfirm, setShowConfirm] = useState(false);
