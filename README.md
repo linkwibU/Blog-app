@@ -1,18 +1,36 @@
-# React + Vite
+# Blog App
+Dự án đăng blog app tiện dùng.
+## Screenshot
+![home](./asset/home.PNG)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+![about](./asset/about.PNG)
 
-Currently, two official plugins are available:
+![card](./asset/card.PNG)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![edit](./asset/edit.PNG)
 
-## React Compiler
+![formcreate](./asset/formcreate.PNG)
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+![login](./asset/login.PNG)
 
-Note: This will impact Vite dev & build performances.
+![notfound](./asset/notfound.PNG)
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Feature
+- AboutPage.jsx
+- HomePage.jsx
+- NotFoundPage.jsx
+- PostCreatePage.jsx
+- PostEditPage.jsx
+- PostDetailPage.jsx
+- PostListPage.jsx
+## 🛠 Tech Stack
+- Node.js, React
+- Bootstrap, CSS
+- Javascript HTML
+## Run App
+- npm install
+- npm run dev
+## Link API
+(https://post365-api.onschoolbootcamp.edu.vn/posts/)
+## Link demo
+(https://6a771a75da82b4b954adbe7e--glistening-cuchufli-6ee5e0.netlify.app/)
