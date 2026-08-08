@@ -60,7 +60,6 @@ export default function PostDetailPage() {
 
     }
 
-
     return (
         <div style={{display:'flex', flexDirection:'column', width: '40em'}}>
             {/* <h3>chi tiết bài post {postId}</h3> */}
