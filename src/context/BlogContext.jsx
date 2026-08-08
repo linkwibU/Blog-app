@@ -118,21 +118,23 @@ export function BlogProvider({ children }) {
         }
         catch (err) {
             console.error(err.message);
+            
         }
     }
-    async function loadPostId(formData, postId) {
+    async function loadPostId(postId) {
         try {
             const res = await fetch(`https://post365-api.onschoolbootcamp.edu.vn/posts/${postId}`, {
                 method: 'GET',
-            })
+            });
             if (!res.ok) {
                 throw new Error("Không thể tải bài viết");
             }
             const data = await res.json();
             console.log(data);
-        }
-        catch (err) {
+            return data;
+        } catch (err) {
             console.error(err.message);
+            throw err;
         }
     }
     return (

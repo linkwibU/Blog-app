@@ -1,16 +1,29 @@
-import {  useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function PostForm({ initialValues, onSubmit, submitLabel }) {
     const [form, setForm] = useState({
-        title: initialValues.title || "",
-        slug: initialValues.slug || "",
-        author: initialValues.author || "",
-        status: initialValues.status || "",
-        summary: initialValues.summary || "",
-        content: initialValues.content || "",
-        tags: Array.isArray(initialValues.tags) ? initialValues.tags.join(", ") : (initialValues.tags || "")
-        
-    })
+        id: initialValues?.id ?? "",
+        title: initialValues?.title || "",
+        slug: initialValues?.slug || "",
+        author: initialValues?.author || "",
+        status: initialValues?.status || "",
+        summary: initialValues?.summary || "",
+        content: initialValues?.content || "",
+        tags: Array.isArray(initialValues?.tags) ? initialValues.tags.join(", ") : (initialValues?.tags || "")
+    });
+
+    useEffect(() => {
+        setForm({
+            id: initialValues?.id ?? "",
+            title: initialValues?.title || "",
+            slug: initialValues?.slug || "",
+            author: initialValues?.author || "",
+            status: initialValues?.status || "",
+            summary: initialValues?.summary || "",
+            content: initialValues?.content || "",
+            tags: Array.isArray(initialValues?.tags) ? initialValues.tags.join(", ") : (initialValues?.tags || "")
+        });
+    }, [initialValues]);
     const [errorTitle, setErrorTitle] = useState("");
     const [errorContent, setErrorContent] = useState("");
     const [errorExcerpt, setErrorExcerpt] = useState("");
@@ -27,15 +40,19 @@ export default function PostForm({ initialValues, onSubmit, submitLabel }) {
     }
     function validateForm() {
         let isValid = true;
+        setErrorTitle("");
+        setErrorContent("");
+        setErrorExcerpt("");
+
         if (!form.title.trim()) {
-            setErrorTitle("Vui lòng nhập họ tên");
+            setErrorTitle("Vui lòng nhập tiêu đề");
             isValid = false;
         }
         if (!form.content.trim()) {
             setErrorContent('Vui lòng nhập nội dung khoá học');
             isValid = false;
         }
-        if (!form.excerpt.trim()) {
+        if (!form.summary.trim()) {
             setErrorExcerpt('Vui lòng nhập nội dung khoá học');
             isValid = false;
         }
@@ -71,7 +88,7 @@ export default function PostForm({ initialValues, onSubmit, submitLabel }) {
                     onChange={handleChange}
                     name="author"
                 />
-                <select id="status"  value={form.status} onChange={handleChange} name="status">
+                <select id="status" value={form.status} onChange={handleChange} name="status">
                     <option value="">Chọn trạng thái</option>
                     <option value="draft">draft</option>
                     <option value="published">published</option>

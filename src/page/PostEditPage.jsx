@@ -1,32 +1,50 @@
-import { useContext, useEffect } from "react";
-import PostForm from "../component/PostForm"
+import { useContext, useEffect, useState } from "react";
+import PostForm from "../component/PostForm";
 import { BlogContext } from "../context/BlogContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 export default function PostEditPage() {
     const navigate = useNavigate();
-    const {loadPostId, loadEditPostId} = useContext(BlogContext);
-    async function handleEdit(){
-        loadPostId();
-        try {
-            const NewPost = await loadEditPostId(formData);
-            console.log("in ra: ", NewPost);
-            navigate(`admin/posts/new/${NewPost.id}`);
+    const { postId } = useParams();
+    const { loadPostId, loadEditPostId } = useContext(BlogContext);
+    const [post, setPost] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchPost() {
+            try {
+                setLoading(true);
+                const updatePost = await loadPostId(postId);
+                setPost(updatePost);
+            } catch (err) {
+                console.error("Tạo mới thất bại", err);
+            } finally {
+                setLoading(false);
+            }
         }
-        catch(err){
+
+        fetchPost();
+    }, [loadPostId, postId]);
+
+    async function handleEdit(formData) {
+        try {
+            const update = await loadEditPostId(formData, postId);
+            console.log("in ra: ", update);
+            navigate(`/posts/${postId}`);
+        } catch (err) {
             console.error("Tạo mới thất bại", err);
-            
         }
     }
-    useEffect(() => {
-        loadEditPostId();
-    }, [])
-
 
     return (
         <div>
-            <h1>Chỉnh sửa bài viết </h1>
-            <p>Cập nhập nội dung bài viết </p>
-            <PostForm  initialValues={post} onSubmit={handleEdit} submitLabel="Chỉnh sửa"/>
+            <h1>Chỉnh sửa bài viết</h1>
+            <p>Cập nhập nội dung bài viết</p>
+            {loading ? (
+                <p>Đang tải bài viết...</p>
+            ) : (
+                <PostForm initialValues={post} onSubmit={handleEdit} submitLabel="Chỉnh sửa" />
+            )}
         </div>
-    )
+    );
 }
