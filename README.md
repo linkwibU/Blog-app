@@ -59,4 +59,9 @@ Dự án đăng blog app tiện dùng.
   - Học được quy trình tạo trang web tối ưu hơn qua các kỹ thuật trên.
   
 
- 
+ ## Demo web
+[link demo](glistening-cuchufli-6ee5e0.netlify.app)
+## Github Profile
+[profile](https://github.com/linkwibU)
+## My CV
+[CV](https://docs.google.com/document/d/1oApPm8PB1cXvrzrWW3WO-BduRvAYdfPtEDEHjnZtxlM/edit?usp=sharing)
