@@ -47,8 +47,8 @@ export function blogReducer(state, action) {
                 ))
             }
         }
-        case "DELETE_POST":{
-            return{
+        case "DELETE_POST": {
+            return {
                 ...state,
                 posts: state.posts.filter((p) => p.id !== action.payload)
             }
@@ -81,10 +81,7 @@ export function BlogProvider({ children }) {
             console.error(err.message);
             dispatch({ type: "FAIL", payload: err.message });// truyền data vào error trong context
         }
-        // finally {
-        //   setLoading(false);
 
-        // }
     }
     async function loadCreate(formData) {
         try {
@@ -124,7 +121,7 @@ export function BlogProvider({ children }) {
         }
         catch (err) {
             console.error(err.message);
-            
+
         }
     }
     async function loadPostId(postId) {
@@ -143,7 +140,7 @@ export function BlogProvider({ children }) {
             throw err;
         }
     }
-        async function loadDelete(postId) {
+    async function loadDelete(postId) {
         try {
             console.log("postId:", postId, typeof postId);
             // setLoading(true);
@@ -154,9 +151,9 @@ export function BlogProvider({ children }) {
                 throw new Error("Không thể tải bài viết");
             }
             const data = await res.json(postId);
-            dispatch({type:"DELETE", payload: postId})
+            dispatch({ type: "DELETE", payload: postId })
             console.log(data);
-       }
+        }
         catch (err) {
             // setError("vui lòng thử lại");
             console.error(err.message);
